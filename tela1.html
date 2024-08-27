@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela 1 - Inserção e Ordenação</title>
+    <link rel="stylesheet" href="/css/tela1.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    
+    <body class="container-flex m-5 p-2">
+        <h1>Inserção e Ordenação</h1>
+        <div class="justify-content-center">
+            <form class="" id="inputForm">
+                <input type="number" id="input1" placeholder="Valor 1" required>
+                <input type="number" id="input2" placeholder="Valor 2" required>
+                <input type="number" id="input3" placeholder="Valor 3" required>
+                <input type="number" id="input4" placeholder="Valor 4" required>
+                <input type="number" id="input5" placeholder="Valor 5" required>
+                <input type="number" id="input6" placeholder="Valor 6" required>
+                <input type="number" id="input7" placeholder="Valor 7" required>
+                <input type="number" id="input8" placeholder="Valor 8" required>
+            </form>
+        </div>   
+    </body>
+    
+    <ul id="sortedList"></ul>
+    <button type="button" onclick="sortValues()">Ordenar Valores</button>
+    <button onclick="navigateToSearch()">Ir para a Tela de Busca</button>
+
+    <script>
+        function sortValues() {
+            const values = [];
+            for (let i = 1; i <= 8; i++) {
+                const value = document.getElementById(`input${i}`).value;
+                if (value) {
+                    values.push(Number(value));
+                }
+            }
+
+            // Ordena os valores em ordem crescente
+            const sortedValues = values.sort((a, b) => a - b);
+
+            // Atualiza a lista na tela
+            const list = document.getElementById('sortedList');
+            list.innerHTML = '';
+            sortedValues.forEach(value => {
+                const listItem = document.createElement('li');
+                listItem.textContent = value;
+                list.appendChild(listItem);
+            });
+
+            // Armazena os valores ordenados em localStorage
+            localStorage.setItem('sortedValues', JSON.stringify(sortedValues));
+        }
+
+        function navigateToSearch() {
+            // Navega para a segunda tela
+            window.location.href = 'tela2.html';
+        }
+    </script>
+</body>
+</html>
